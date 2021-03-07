@@ -1,0 +1,13 @@
+{
+  "name": "NoPWNed",
+  "version": "1",
+  "slug": "nopwned",
+  "description": "A dirty little addon to patch haveibeenpwned out of supervisor",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "url": "https://github.com/freman/hass-nopwned",
+  "startup": "application",
+  "boot": "auto",
+  "docker_api": true,
+  "options": {},
+  "schema": {}
+}
