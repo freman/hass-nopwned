@@ -1,18 +1,14 @@
 #!/usr/bin/with-contenv bashio
 
-if [ ! "$(docker ps -q -f name=hassio_supervisor)" ]; then
-	echo "Supervisor not detected, exiting"
-	exit 1
-fi
+cat << EOF
+This addon is no longer required"
 
-if ! ( docker cp hassio_supervisor:/usr/src/supervisor/supervisor/resolution/checks/addon_pwned.py - | grep -q check_pwned_password ); then
-	echo "Seems Supervisor has already been patched, exiting"
-	exit 1
-fi
+See: https://community.home-assistant.io/t/opt-out-of-pwned-secrets-warnings/286394/241
 
-echo "Replacing the addon_pwned check with a stub"
-docker cp /app/addon_pwned.py hassio_supervisor:/usr/src/supervisor/supervisor/resolution/checks/addon_pwned.py
-echo "Restarting supervisor"
-docker restart hassio_supervisor
-echo "Done"
+> To anyone interested, the password check can now be disabled with the command below in the CLI using the latest versions of either the core-ssh add-on or the community ssh add-on:
+>
+> Terminal & SSH (core) version 9.1.0
+> SSH & Web Terminal (community) version 8.0.4
 
+ha resolution check options --enabled=false addon_pwned
+EOF
